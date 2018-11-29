@@ -72,10 +72,13 @@ router.post('*', (req, res) => {
             sessionId,
             serviceCode,
             phoneNumber,
-            complaint: text,
+            complaint: text.split('*')[text.split('*').length - 1],
             date: new Date()
         }).save()
-            .then(() => res.send(`END Thank you for your feedback. It has been noted and action will be taken shortly`))
+            .then(() => {
+                console.log('Saved')
+                res.send(`END Thank you for your feedback. It has been noted and action will be taken shortly`)
+            })
             .catch(() => res.send(`An error occurred. Please try again`))
     }
 })
