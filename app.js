@@ -34,7 +34,7 @@ var pusher            = new Pusher(credentials.pusher);
 const
     port = process.env.PORT || 3000,
     env = process.env.NODE_ENV,
-  DBURL = process.env.DBURL || 'mongodb+srv://davidteejay:Brain.box8@cluster0-xw7ug.mongodb.net/test?retryWrites=true';
+  DBURL = process.env.DBURL || 'mongodb://davidteejay:Brain.box8@ds241493.mlab.com:41493/teambaiwa';
 let db;
 
 /********************
