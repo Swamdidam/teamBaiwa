@@ -32,9 +32,9 @@ var pusher            = new Pusher(credentials.pusher);
  * Module variables *
  ********************/
 const
-    port = process.env.PORT,
+    port = process.env.PORT || 3000,
     env = process.env.NODE_ENV,
-    DBURL = process.env.DBURL;
+  DBURL = process.env.DBURL || 'mongodb+srv://davidteejay:Brain.box8@cluster0-xw7ug.mongodb.net/test?retryWrites=true';
 let db;
 
 /********************
@@ -97,7 +97,7 @@ process.on('SIGINT', () => {
 /**********
  * Routes *
  *********/
-    app.use('/', require('./index'));
+    app.use('/ussd', require('./index'));
 
 /**************
  * Export app *

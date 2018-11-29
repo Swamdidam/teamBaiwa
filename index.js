@@ -1,85 +1,82 @@
-const os = require('os');
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
+const Complaints = require('./models/Complaints')
 
-//const user = require('./user');
-const   UssdMenu          = require('ussd-menu-builder');
-let menu                  = new UssdMenu();
- 
-
-
-// Define menu states
-menu.startState({
-    run: () => {
-        // use menu.con() to send response without terminating session      
-        menu.con('Welcome. Select Language:' +
-            '\n1. English' +
-            '\n2. Hausa');
-    },
-    // next object links to next state based on user input
-    next: {
-        '1': 'English',
-        '2': 'Hausa'
-    }
-});
- 
-menu.state('English', {
-    run: () => {
-        // use menu.con() to send response without terminating session      
-        menu.con('Please state your complain :' +
-            '\n1. Unclean facilities' +
-            '\n2. Insufficient medication'  +
-            '\n3. Bad customer relations' +
-            '\n4. Excessive time wait to see a doctor' +
-            '\n5. Others');
-        
-    },
-    // next object links to next state based on user input
-    next: {
-        '1': 'Unclean facilities',
-        '2': 'Insufficient medication',
-        '3': 'Bad customer relations',
-        '4': 'Excessive time wait to see a doctor',
-        '5': 'Others',
-
-    }
-});
-
-
-menu.state('Others', {
-    run: () => {
-        menu.con('Please we will get back to you shortly:');
-    },
-    next: {
-        // using regex to match user input to next state
-        '*\\d+': 'Others'
-    }
-});
- 
-// nesting states
-menu.state('Others', {
-    run: () => {
-            menu.end('Thank you for reaching out to.');
-    }
-});
- 
-// Registering USSD handler with Express
- 
-router.post('/ussd', function(req, res){
-    menu.run(req.body, ussdResult => {
-        res.send(ussdResult);
-    });
-});
- 
-
-/* GET home page. */
-
-router.get('/', (req, res) => {
+router.get('*', (req, res) => {
   res.json({status: 200, message:'We are good to go'});
 });
 
-// //All routes to be used
-// router.use('/', user);
+router.post('*', (req, res) => {
+    let { sessionId, serviceCode, phoneNumber, text } = req.body
+
+    if (text === ''){
+        res.send(`CON Please select a language
+            1. English
+            2. Hausa
+        `)
+    } else if (text === '1'){
+        res.send(`CON State your complaint
+            1. Unclean facilities
+            2. Insufficient medication
+            3. Bad customer service
+            4. Excessive wait time to see a doctor
+            5. Others
+        `)
+    } else if(text === '2'){
+        res.send(`END This function is still in development. Please check back later`)
+    } else if (text === '1*1'){
+        new Complaints({
+            sessionId,
+            serviceCode,
+            phoneNumber,
+            complaint: 'Unclean Facilities',
+            date: new Date()
+        }).save()
+        .then(() => res.send(`END Thank you for your feedback. It has been noted and action will be taken shortly`))
+        .catch(() => res.send(`An error occurred. Please try again`))
+    } else if (text === '1*2'){
+        new Complaints({
+            sessionId,
+            serviceCode,
+            phoneNumber,
+            complaint: 'Insufficient Medication',
+            date: new Date()
+        }).save()
+            .then(() => res.send(`END Thank you for your feedback. It has been noted and action will be taken shortly`))
+            .catch(() => res.send(`An error occurred. Please try again`))
+    } else if (text === '1*3'){
+        new Complaints({
+            sessionId,
+            serviceCode,
+            phoneNumber,
+            complaint: 'Bad Customer Service',
+            date: new Date()
+        }).save()
+            .then(() => res.send(`END Thank you for your feedback. It has been noted and action will be taken shortly`))
+            .catch(() => res.send(`An error occurred. Please try again`))
+    } else if (text === '1*4'){
+        new Complaints({
+            sessionId,
+            serviceCode,
+            phoneNumber,
+            complaint: 'Excessive wait time to see a doctor',
+            date: new Date()
+        }).save()
+            .then(() => res.send(`END Thank you for your feedback. It has been noted and action will be taken shortly`))
+            .catch(() => res.send(`An error occurred. Please try again`))
+    } else if (text === '1*5'){
+        res.send(`CON Enter your complaint`)
+    } else {
+        new Complaints({
+            sessionId,
+            serviceCode,
+            phoneNumber,
+            complaint: text,
+            date: new Date()
+        }).save()
+            .then(() => res.send(`END Thank you for your feedback. It has been noted and action will be taken shortly`))
+            .catch(() => res.send(`An error occurred. Please try again`))
+    }
+})
 
 module.exports = router;
