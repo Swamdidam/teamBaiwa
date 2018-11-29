@@ -1,29 +1,4 @@
-# teamBaiwa
-
-## Installation
-To run the TeamBaiwa app offline, you need to install the following;
-
-1. Make sure you have installed [Node.js](https://nodejs.org/en/download/). Versions 6.0.0 and higher should work. We recommend that you use the most-recent "Active LTS" version of Node.js.
-2. Make sure you have installed `npm` (NB: `npm` is distributed with Node.js- which means that when you download Node.js, you automatically get npm installed on your computer).   
-
-### Check that you have node and npm installed
-
-- To check if you have Node.js installed, run this command in your terminal:
-
-`node -v`
-
-- To confirm that you have npm installed you can run this command in your terminal:
-
-`npm -v`
-
-## Quick Start
-
-1. `npm install` (You can also use Yarn)
-2. `node server.js` (or `node appjs`)
-3. Open <http://localhost:3000>
-
-
-## Health Facility Monitoring System
+# Health Facility Monitoring System
 A problem facing Kaduna health care is an inability to supervise the facilities in the state as noted by the first problem statement under the Health section of the Grid3 competition.
 This can be resolved with our Health Facility Monitoring System which can be used for all health facilities across the state including the most remote and isolated facilities where internet access might not be easy to come by.
 
