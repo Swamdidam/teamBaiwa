@@ -8,4 +8,4 @@ const complaint = new mongoose.Schema({
 	date: Date
 })
 
-module.exports = mongoose.model('Complaints', user)
+module.exports = mongoose.model('Complaints', complaint)
