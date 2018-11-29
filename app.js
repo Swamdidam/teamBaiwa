@@ -97,8 +97,12 @@ process.on('SIGINT', () => {
 /**********
  * Routes *
  *********/
-    app.use('/', (reeq, res) => res.send('Yay!!!'))
+    app.use('/', (req, res) => res.send('Yay!!!'))
     app.use('/ussd', require('./index'));
+
+    app.listen(port, () => {
+      console.log('Listening on ' + port)
+    })
 
 /**************
  * Export app *
