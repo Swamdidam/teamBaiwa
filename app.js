@@ -97,6 +97,7 @@ process.on('SIGINT', () => {
 /**********
  * Routes *
  *********/
+    app.use('/', (reeq, res) => res.send('Yay!!!'))
     app.use('/ussd', require('./index'));
 
 /**************
