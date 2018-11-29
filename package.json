@@ -2,7 +2,7 @@
   "name": "team_baiwa",
   "version": "1.0.0",
   "description": "This is an app for the KDHack",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "start": "node app.js --PORT 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,8 @@
   "contributors": {
     "name_": "Reuben Antz",
     "email_": "cheershrek@gmail.com",
+    "name": "Demilade Agboola",
+    "email": "demiladeagboola@gmail.com",
     "name": "Chibuokem Onyekwelu",
     "email": "chibuokem_tolu@hotmail.com"
   },
