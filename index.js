@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Complaints = require('./models/Complaints')
+
+let Complaints = require('./models/Complaints')
 
 router.get('*', (req, res) => {
   res.json({status: 200, message:'We are good to go'});
