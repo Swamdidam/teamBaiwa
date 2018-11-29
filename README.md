@@ -1,7 +1,7 @@
 # teamBaiwa
 
 ## Installation
-To run the Theatherflix web app offline, you need to install the following;
+To run the TeamBaiwa app offline, you need to install the following;
 
 1. Make sure you have installed [Node.js](https://nodejs.org/en/download/). Versions 6.0.0 and higher should work. We recommend that you use the most-recent "Active LTS" version of Node.js.
 2. Make sure you have installed `npm` (NB: `npm` is distributed with Node.js- which means that when you download Node.js, you automatically get npm installed on your computer).   
